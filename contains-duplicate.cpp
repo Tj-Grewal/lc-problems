@@ -17,3 +17,24 @@ public:
         return false;
     }
 };
+
+// Second approach - speed up to NlogN time complexity 
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+    
+        // NlogN approach. Sort the items, making it so that if there are
+        // duplicates, they will be right next to each other
+        sort(nums.begin(), nums.end());
+        
+        // Sorting takes NlogN and the array comparison is N giving us 
+        // Time complexity O(NlogN), no additional space required
+        
+        for (int i = 0; i < nums.size()-1; i++) {
+            if (nums[i] == nums[i+1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
