@@ -38,3 +38,30 @@ public:
         return false;
     }
 };
+
+
+// Third approach using unordered set
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        
+        // Initialize an unordered set
+        // ref: https://cplusplus.com/reference/unordered_set/unordered_set/
+        unordered_set<int> s;
+        
+        // Go through the entire vector and insert them into the set
+        for (int i = 0; i < nums.size(); i++) {
+            
+            // If while inserting you find a match, return true
+            if (s.find(nums[i]) != s.end()) {
+                return true;
+            }
+            
+            // Otherwise continue normal inserting
+            s.insert(nums[i]);
+        }
+        
+        // Reached the end of vector and no duplicates found
+        return false;
+    }
+};
