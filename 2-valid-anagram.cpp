@@ -1,3 +1,4 @@
+// Approach 1: Sort them and check whether they are the same strings or not.
 class Solution {
 public:
     bool isAnagram(string s, string t) {
@@ -37,6 +38,36 @@ public:
         for (auto count: hm) {
             if (count.second) {return false;} // if the value is anything besides 0
         }
+        return true;
+    }
+};
+
+// Approach 3: Simulate hashmap using an array 
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        
+        // First check is s is the same length as t
+        if (s.length() != t.length()) { return false; }
+        
+        // Similar idea as hashmap but this time change to array implementation
+        // since there are only lower case alphabets
+        
+        int n = s.size(); // make a var so the size method isn't called regularly
+            
+        int count[26] = {0};
+        for (int i = 0; i < n; i++) { 
+            count[s[i] - 'a']++;
+            count[t[i] - 'a']--;
+        }
+        
+        // loop through to see if anything isn't 0 aka false
+        for (int i = 0; i < 26; i++) {
+            if (count[i]) {
+                return false;
+            }
+        }
+        
         return true;
     }
 };
